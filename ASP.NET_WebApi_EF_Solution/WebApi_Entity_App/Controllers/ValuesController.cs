@@ -7,12 +7,13 @@ using System.Web.Http;
 
 namespace WebApi_Entity_App.Controllers
 {
+    [RoutePrefix("api_home")]
     public class ValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         // GET api/values/5
@@ -35,5 +36,7 @@ namespace WebApi_Entity_App.Controllers
         public void Delete(int id)
         {
         }
+
+
     }
 }
