@@ -1,67 +1,43 @@
 @using System.Web.Http
-@using System.Web.Http.Description
 @using WebApi_Entity_App.Areas.HelpPage.Models
-@using WebApi_Entity_App.Areas.HelpPage.ModelDescriptions
 @model HelpPageApiModel
 
-@{
-    ApiDescription description = Model.ApiDescription;
+@{ 
+    var description = Model.ApiDescription;
+    bool hasParameters = description.ParameterDescriptions.Count > 0;
+    bool hasRequestSamples = Model.SampleRequests.Count > 0;
+    bool hasResponseSamples = Model.SampleResponses.Count > 0;
 }
 <h1>@description.HttpMethod.Method @description.RelativePath</h1>
 <div>
-    <p>@description.Documentation</p>
-
-    <h2>Request Information</h2>
-
-    <h3>URI Parameters</h3>
-    @Html.DisplayFor(m => m.UriParameters, "Parameters")
-
-    <h3>Body Parameters</h3>
-
-    <p>@Model.RequestDocumentation</p>
-
-    @if (Model.RequestModelDescription != null)
+    @if (description.Documentation != null)
     {
-        @Html.DisplayFor(m => m.RequestModelDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.RequestModelDescription })
-        if (Model.RequestBodyParameters != null)
-        {
-            @Html.DisplayFor(m => m.RequestBodyParameters, "Parameters")
-        }
+        <p>@description.Documentation</p>
     }
     else
     {
-        <p>None.</p>
+        <p>No documentation available.</p>
     }
 
-    @if (Model.SampleRequests.Count > 0)
+    @if (hasParameters || hasRequestSamples)
     {
-        <h3>Request Formats</h3>
-        @Html.DisplayFor(m => m.SampleRequests, "Samples")
-    }
-
-    <h2>Response Information</h2>
-
-    <h3>Resource Description</h3>
-
-    <p>@description.ResponseDescription.Documentation</p>
-
-    @if (Model.ResourceDescription != null)
-    {
-        @Html.DisplayFor(m => m.ResourceDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.ResourceDescription })
-        if (Model.ResourceProperties != null)
+        <h2>Request Information</h2>
+        if (hasParameters)
         {
-            @Html.DisplayFor(m => m.ResourceProperties, "Parameters")
+            <h3>Parameters</h3>
+            @Html.DisplayFor(apiModel => apiModel.ApiDescription.ParameterDescriptions, "Parameters")
         }
-    }
-    else
-    {
-        <p>None.</p>
-    }
+        if (hasRequestSamples)
+        {
+            <h3>Request body formats</h3>
+            @Html.DisplayFor(apiModel => apiModel.SampleRequests, "Samples")
+        }
+    } 
 
-    @if (Model.SampleResponses.Count > 0)
+    @if (hasResponseSamples)
     {
-        <h3>Response Formats</h3>
-        @Html.DisplayFor(m => m.SampleResponses, "Samples")
+        <h2>Response Information</h2> 
+        <h3>Response body formats</h3>
+        @Html.DisplayFor(apiModel => apiModel.SampleResponses, "Samples")
     }
-
 </div>

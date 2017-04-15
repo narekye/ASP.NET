@@ -1,0 +1,4 @@
+﻿.NET framework is missing one assembly reference,
+i added this assembly reference with nuget package manager
+/ Microsoft ASP.NET Web API 2.1 Web Host. / 
+it will work.
