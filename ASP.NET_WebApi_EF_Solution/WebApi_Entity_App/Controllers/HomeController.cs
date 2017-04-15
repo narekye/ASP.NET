@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using WebApi_Entity_App.Database;
 
 namespace WebApi_Entity_App.Controllers
 {
-    public class HomeController : Controller
+    [System.Web.Mvc.RoutePrefix("apidb")]
+    public class HomeController : ApiController
     {
-        public ActionResult Index()
-        {
-            ViewBag.Title = "Home Page";
+        private PlayersContext db = new PlayersContext();
 
-            return View();
+        [System.Web.Http.Route("players")]
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult GetPlayers()
+        {
+            List<Player> players = db.Players.ToList();
+            return Ok(players);
         }
     }
 }
