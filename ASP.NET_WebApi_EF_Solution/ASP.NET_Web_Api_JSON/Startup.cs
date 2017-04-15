@@ -13,7 +13,9 @@ namespace ASP.NET_Web_Api_JSON
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureWebApi(new HttpConfiguration());
+            
+            HttpConfiguration config = new HttpConfiguration();
+            ConfigureWebApi(config);
         }
 
         public void ConfigureWebApi(HttpConfiguration config)

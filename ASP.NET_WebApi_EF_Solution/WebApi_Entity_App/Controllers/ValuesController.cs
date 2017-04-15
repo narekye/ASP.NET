@@ -22,32 +22,7 @@ namespace WebApi_Entity_App.Controllers
         {
             return new[] { "value1", "value2" };
         }
-        [System.Web.Http.HttpGet]
-        public IHttpActionResult GetPlayers()
-        {
-            var players = db.Players.ToList();
-            return Ok(players);
-        }
-
-        public IHttpActionResult Input()
-        {
-            string[] result = new string[]
-            {
-                "Value1",
-                "value2"
-            };
-
-            string vb = "Hello";
-            return Json(new
-            {
-                foo = "bar",
-                boo = "bar"
-            });
-        }
-
-        public JsonResult YYYY()
-        {
-            return Json("aaaaaa", JsonRequestBehavior.AllowGet);
-        }
+        
+        
     }
 }
