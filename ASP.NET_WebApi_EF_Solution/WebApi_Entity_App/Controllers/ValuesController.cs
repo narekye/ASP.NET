@@ -4,13 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
+using WebApi_Entity_App.Database;
 
 namespace WebApi_Entity_App.Controllers
 {
-    [RoutePrefix("api_home")]
-    public class ValuesController : ApiController
+    
+    public class ValuesController : ApiController,IController
     {
-        // GET api/values
+        private PlayersContext db = new PlayersContext();
         public IEnumerable<string> Get()
         {
             return new[] { "value1", "value2" };
@@ -37,6 +40,17 @@ namespace WebApi_Entity_App.Controllers
         {
         }
 
+        
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult GetPlayers()
+        {
+            var players = db.Players.ToList();
+            return Ok(players);
+        }
 
+        public void Execute(RequestContext requestContext)
+        {
+            
+        }
     }
 }
