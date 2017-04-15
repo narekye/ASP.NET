@@ -243,6 +243,7 @@
       <LastGenOutput>Player1.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="Files\home-hero-2.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
