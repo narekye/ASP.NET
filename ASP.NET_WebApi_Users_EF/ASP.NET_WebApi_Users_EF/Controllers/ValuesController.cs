@@ -26,6 +26,7 @@
         [HttpPut]
         public IHttpActionResult PutUser([FromUri] User user)
         {
+            if (ReferenceEquals(_loggedUser, null)) return BadRequest("Please sign in to continue...");
             if (!ModelState.IsValid)
                 return BadRequest("Verify info");
 
@@ -35,13 +36,14 @@
             return Ok("User added to database");
         }
 
-        
         [HttpGet]
         public IHttpActionResult Logout()
         {
+            if (ReferenceEquals(_loggedUser, null)) return BadRequest("Please sign in for sign out....");
             _loggedUser = null;
             return Ok("User logged out");
-
         }
+
+        
     }
 }
