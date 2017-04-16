@@ -1,6 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
-
+﻿using System.Web.Mvc;
 namespace ASP.NET_WebApi_Users_EF
 {
     public class FilterConfig

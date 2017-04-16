@@ -6,7 +6,7 @@
 
     public class ValuesController : ApiController
     {
-        private static User _loggedUser = null;
+        private static User _loggedUser;
         private UsersContext db = new UsersContext();
         [HttpGet]
         public IHttpActionResult GetAllUsers()
