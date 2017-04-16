@@ -40,8 +40,8 @@ namespace ASP.NET_Web_Api_JSON_Sending_Receiving.Controllers
         public IHttpActionResult Post([FromUri]Person p)
         {
             if (ModelState.IsValid)
-                return this.Ok("OK");
-            return this.BadRequest("Please verify your data....!");
+                return Ok("OK");
+            return BadRequest("Please verify your data....!");
         }
 
         public IHttpActionResult PostPerson([FromBody] Person p)
