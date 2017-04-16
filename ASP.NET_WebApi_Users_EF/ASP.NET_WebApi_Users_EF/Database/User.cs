@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace ASP.NET_WebApi_Users_EF.Database
 {
     using System;
@@ -14,11 +16,13 @@ namespace ASP.NET_WebApi_Users_EF.Database
     
     public partial class User
     {
+        
         public int UserId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string SurName { get; set; }
         public int RoleId { get; set; }
-    
         public virtual Role Role { get; set; }
     }
 }

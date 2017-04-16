@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Security;
-using ASP.NET_WebApi_Users_EF.Database;
-
-namespace ASP.NET_WebApi_Users_EF.Controllers
+﻿namespace ASP.NET_WebApi_Users_EF.Controllers
 {
+    using System.Linq;
+    using System.Web.Http;
+    using Database;
+
     public class ValuesController : ApiController
     {
         private static User _loggedUser = null;
@@ -37,14 +32,16 @@ namespace ASP.NET_WebApi_Users_EF.Controllers
         public IHttpActionResult PostLogin([FromUri]User user)
         {
             if (!ModelState.IsValid) return NotFound();
-            _loggedUser = user;
+            if (db.Users.Contains(user))
+                _loggedUser = user;
             return Ok();
         }
 
         [HttpGet]
+        [Route("Info")]
         public IHttpActionResult GetInfoAboutUser()
         {
-            return Ok(LoggedUser);
+            return Ok(_loggedUser);
         }
         
     }
