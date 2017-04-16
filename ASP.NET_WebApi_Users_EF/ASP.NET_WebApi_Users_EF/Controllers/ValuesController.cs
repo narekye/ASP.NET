@@ -8,16 +8,23 @@
     {
         private static User _loggedUser;
         private UsersContext db = new UsersContext();
-        [HttpGet]
-        public IHttpActionResult GetAllUsers()
+
+        [HttpPost]
+        public IHttpActionResult GetAllUsers([FromUri]User urluser)
         {
-            var users = from user in db.Users
-                        join role in db.Roles on user.RoleId equals role.RoleId
-                        select new { user.Name, user.SurName, role.Description };
-            return Ok(users);
+            if (urluser.Name == "admin" && urluser.RoleId == 1)
+            {
+                _loggedUser = urluser;
+                var users = from user in db.Users
+                            join role in db.Roles on user.RoleId equals role.RoleId
+                            select new { user.Name, user.SurName, role.Description };
+                return Ok(users);
+            }
+            return BadRequest("You don't have permission to access this page...");
         }
+
         [HttpPut]
-        public IHttpActionResult PutUser([FromBody]User user)
+        public IHttpActionResult PutUser([FromUri] User user)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Verify info");
@@ -28,21 +35,13 @@
             return Ok("User added to database");
         }
 
-        [HttpPost]
-        public IHttpActionResult PostLogin([FromUri]User user)
-        {
-            if (!ModelState.IsValid) return NotFound();
-            if (db.Users.Contains(user))
-                _loggedUser = user;
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("Info")]
-        public IHttpActionResult GetInfoAboutUser()
-        {
-            return Ok(_loggedUser);
-        }
         
+        [HttpGet]
+        public IHttpActionResult Logout()
+        {
+            _loggedUser = null;
+            return Ok("User logged out");
+
+        }
     }
 }
