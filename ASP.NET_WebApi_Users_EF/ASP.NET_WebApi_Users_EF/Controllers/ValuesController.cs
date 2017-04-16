@@ -35,7 +35,7 @@
             db.SaveChanges();
             return Ok("User added to database");
         }
-
+        [Route("api/values/logout")]
         [HttpGet]
         public IHttpActionResult Logout()
         {
@@ -43,7 +43,11 @@
             _loggedUser = null;
             return Ok("User logged out");
         }
-
-        
+        [HttpGet]
+        [Route("api/values/aper")]
+        public IHttpActionResult GetSomeData()
+        {
+            return Ok();
+        }
     }
 }
