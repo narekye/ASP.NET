@@ -4,6 +4,4 @@
 
 ASP.NET is an open source web framework for building modern web apps and services with .NET. ASP.NET creates websites based on HTML5, CSS, and JavaScript that are simple, fast, and can scale to millions of users.
 
-ASP.NET applications, Web API, ASP.NET MVC 5, Entity Framework, ADO.NET, examples. 
-
-   
+ASP.NET applications, Web API, ASP.NET MVC 5, Entity Framework, ADO.NET, examples.
