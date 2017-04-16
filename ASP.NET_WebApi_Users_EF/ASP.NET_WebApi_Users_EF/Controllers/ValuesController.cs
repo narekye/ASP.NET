@@ -4,36 +4,48 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Security;
+using ASP.NET_WebApi_Users_EF.Database;
 
 namespace ASP.NET_WebApi_Users_EF.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private static User _loggedUser = null;
+        private UsersContext db = new UsersContext();
+        [HttpGet]
+        public IHttpActionResult GetAllUsers()
         {
-            return new string[] { "value1", "value2" };
+            var users = from user in db.Users
+                        join role in db.Roles on user.RoleId equals role.RoleId
+                        select new { user.Name, user.SurName, role.Description };
+            return Ok(users);
+        }
+        [HttpPut]
+        public IHttpActionResult PutUser([FromBody]User user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Verify info");
+
+            user.RoleId = 2;
+            db.Users.Add(user);
+            db.SaveChanges();
+            return Ok("User added to database");
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        [HttpPost]
+        public IHttpActionResult PostLogin([FromUri]User user)
         {
-            return "value";
+            if (!ModelState.IsValid) return NotFound();
+            _loggedUser = user;
+            return Ok();
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        [HttpGet]
+        public IHttpActionResult GetInfoAboutUser()
         {
+            return Ok(LoggedUser);
         }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
