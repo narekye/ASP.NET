@@ -10,7 +10,7 @@
         private UsersContext db = new UsersContext();
 
         [HttpPost]
-        public IHttpActionResult GetAllUsers([FromUri]User urluser)
+        public IHttpActionResult PostAllUsers([FromUri]User urluser)
         {
             if (urluser.Name == "admin" && urluser.RoleId == 1)
             {
@@ -42,12 +42,6 @@
             if (ReferenceEquals(_loggedUser, null)) return BadRequest("Please sign in for sign out....");
             _loggedUser = null;
             return Ok("User logged out");
-        }
-        [HttpGet]
-        [Route("api/values/aper")]
-        public IHttpActionResult GetSomeData()
-        {
-            return Ok();
         }
     }
 }
