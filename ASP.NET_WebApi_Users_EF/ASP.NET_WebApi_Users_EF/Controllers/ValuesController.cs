@@ -35,8 +35,8 @@
             db.SaveChanges();
             return Ok("User added to database");
         }
-        [Route("api/values/logout")]
         [HttpGet]
+        [Route("api/values/logout")]
         public IHttpActionResult Logout()
         {
             if (ReferenceEquals(_loggedUser, null)) return BadRequest("Please sign in for sign out....");
