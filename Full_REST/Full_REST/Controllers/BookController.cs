@@ -30,7 +30,7 @@ namespace Full_REST.Controllers
             if (ReferenceEquals(book, null)) return BadRequest("No such author detected..!!");
             return Ok(book);
         }
-        // POST api/books
+        // POST api/books/add
         [Route("api/books/add")]
         public IHttpActionResult PostBooks([FromBody] Book book)
         {
@@ -42,7 +42,16 @@ namespace Full_REST.Controllers
             db.SaveChangesAsync();
             return Ok("Successfuly added to database...!!"); 
         }
-
-
+        // PUT api/books/{id}
+        public IHttpActionResult PutBoookById(int id, [FromBody]Book book)
+        {
+            var replace = db.Books.FindAsync(id).Result;
+            if(ReferenceEquals(replace,null)) return NotFound();
+            replace.Name = book.Name;
+            replace.Author = book.Author;
+            replace.PublishDate = book.PublishDate;
+            db.SaveChangesAsync();
+            return Ok("Successfully modified..");
+        }
     }
 }
