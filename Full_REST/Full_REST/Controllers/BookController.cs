@@ -40,7 +40,7 @@ namespace Full_REST.Controllers
             if (!ModelState.IsValid) return BadRequest("Verify info.....!!");
             db.Books.Add(book);
             db.SaveChangesAsync();
-            return Ok("Successfuly added to database...!!");
+            return Ok("Successfuly added to database...!!"); 
         }
 
 
