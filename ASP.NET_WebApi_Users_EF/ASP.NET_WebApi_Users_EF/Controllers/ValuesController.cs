@@ -7,7 +7,7 @@
     public class ValuesController : ApiController
     {
         private static User _loggedUser;
-        private UsersContext db = new UsersContext();
+        private readonly UsersContext _db = new UsersContext();
 
         [HttpPost]
         public IHttpActionResult PostAllUsers([FromUri]User urluser)
@@ -15,8 +15,8 @@
             if (urluser.Name == "admin" && urluser.RoleId == 1)
             {
                 _loggedUser = urluser;
-                var users = from user in db.Users
-                            join role in db.Roles on user.RoleId equals role.RoleId
+                var users = from user in _db.Users
+                            join role in _db.Roles on user.RoleId equals role.RoleId
                             select new { user.Name, user.SurName, role.Description };
                 return Ok(users);
             }
@@ -31,8 +31,8 @@
                 return BadRequest("Verify info");
 
             user.RoleId = 2;
-            db.Users.Add(user);
-            db.SaveChanges();
+            _db.Users.Add(user);
+            _db.SaveChanges();
             return Ok("User added to database");
         }
         [HttpGet]
