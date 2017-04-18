@@ -1,12 +1,9 @@
-﻿using System.Linq;
-using System.Net;
-using System.Web.Routing;
-
-namespace Full_REST.Controllers
+﻿namespace Full_REST.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Http;
     using BookDb;
+    using System.Linq;
     // CRUD interface
     public class BooksController : ApiController
     {
@@ -29,13 +26,10 @@ namespace Full_REST.Controllers
         [Route("api/books/search/{author}")]
         public IHttpActionResult GetBooksByAuthor(string author)
         {
-            var sbook = (from book in db.Books
-                where book.Author == author
-                select book);
-
-            if (sbook == null)
-                return BadRequest("No such author detected..!!");
-            return Ok(sbook);
+            var books = (from book in db.Books
+                         where author != null && book.Author == author
+                         select book);
+            return Ok(books);
         }
         // POST api/books/add
         [Route("api/books/add")]
@@ -44,16 +38,16 @@ namespace Full_REST.Controllers
             var list = db.Books.ToList();
             var id = list.Count;
             book.BookId = id;
-            if (!ModelState.IsValid) return BadRequest("Verify info.....!!");
+            if (!ModelState.IsValid) return BadRequest("Verify info..!!");
             db.Books.Add(book);
             db.SaveChangesAsync();
-            return Ok("Successfuly added to database...!!"); 
+            return Ok("Successfuly added to database..!!");
         }
         // PUT api/books/{id}
         public IHttpActionResult PutBookById(int id, [FromBody]Book book)
         {
             var replace = db.Books.FindAsync(id).Result;
-            if(ReferenceEquals(replace,null)) return NotFound();
+            if (ReferenceEquals(replace, null)) return NotFound();
             replace.Name = book.Name;
             replace.Author = book.Author;
             replace.PublishDate = book.PublishDate;
@@ -67,7 +61,7 @@ namespace Full_REST.Controllers
             if (ReferenceEquals(book, null)) return NotFound();
             db.Books.Remove(book);
             db.SaveChangesAsync();
-            return Ok("Completed successfuly..");
+            return Ok("Completed successfully..");
         }
     }
 }
