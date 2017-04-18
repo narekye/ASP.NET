@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "Books";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Books</h2>
+<div>
+	<ol id="res"></ol>
+</div>
+@section scripts
+{
+	<script>
+		$.ajax({
+			url: '/api/books',
+			type: 'GET',
+			success: function (result) {
+				for (var i = 0; i < result.length; i++) {
+					var item = result[i];
+					$('#res').append("<li>" + item.Name + "  " + item.Author + "  " + item.PublishDate + "</li>");
+				}
+				alert("Ok.. that will be at a second...");
+			}
+		}
+		);
+	</script>
+}
+
