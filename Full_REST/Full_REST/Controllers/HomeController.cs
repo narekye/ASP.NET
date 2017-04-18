@@ -7,7 +7,6 @@ namespace Full_REST.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
             return View();
         }
 
