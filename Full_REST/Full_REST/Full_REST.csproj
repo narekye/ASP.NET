@@ -285,6 +285,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Books.cshtml" />
     <Content Include="Views\Home\ShowAllBooks.cshtml" />
+    <Content Include="Views\Home\EditBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,20 @@
+﻿@model Full_REST.BookDb.Book
+
+@{
+	ViewBag.Title = "title";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit book</h2>
+@using (Html.BeginForm("EditBookById", "Home", FormMethod.Post))
+{
+	@Html.Label("input id");
+	@Html.TextBoxFor(m => m.BookId);<br/>
+	@Html.Label("Name");
+	@Html.TextBoxFor(m => m.Name);<br />
+	@Html.Label("Author");
+	@Html.TextBoxFor(m => m.Author);<br />
+	@Html.Label("Publish Date");
+	@Html.TextBoxFor(m => m.PublishDate);<br />
+	<button type="submit">Update</button>
+}

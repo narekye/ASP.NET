@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using Full_REST.BookDb;
 
@@ -22,6 +24,22 @@ namespace Full_REST.Controllers
         {
             var books = db.Books;
             return View(books);
+        }
+
+        [HttpGet]
+        public ActionResult EditBook()
+        {
+            return View();
+        }
+        [HttpPost]
+        public void EditBookById(Book book)
+        {
+            if (!ModelState.IsValid) return;
+            var fbook = db.Books.FirstOrDefault(m => m.BookId == book.BookId);
+            if (fbook == null) throw new ArgumentNullException(nameof(fbook));
+            db.Entry(fbook).CurrentValues.SetValues(book);
+            db.SaveChangesAsync();
+            Response.Write("OK");
         }
     }
 }
