@@ -10,17 +10,18 @@
 @section scripts
 {
 	<script>
+		alert("Starting.. Click OK...");
 		$.ajax({
-			url: '/api/books',
-			type: 'GET',
-			success: function (result) {
-				for (var i = 0; i < result.length; i++) {
-					var item = result[i];
-					$('#res').append("<li>" + item.Name + "  " + item.Author + "  " + item.PublishDate + "</li>");
+				url: '/api/books',
+				type: 'GET',
+				success: function (result) {
+					for (var i = 0; i < result.length; i++) {
+						var item = result[i];
+						$('#res').append("<li>" + item.Name + "\t" + item.Author + "  " + item.PublishDate + "</li>");
+					}
+					alert("Ok.. that will be at a second...");
 				}
-				alert("Ok.. that will be at a second...");
 			}
-		}
 		);
 	</script>
 }

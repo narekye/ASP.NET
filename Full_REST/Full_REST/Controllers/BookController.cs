@@ -26,8 +26,9 @@
         [Route("api/books/search/{author}")]
         public IHttpActionResult GetBooksByAuthor(string author)
         {
+            if (ReferenceEquals(author, null)) return NotFound();
             var books = (from book in db.Books
-                         where author != null && book.Author == author
+                         where book.Author == author
                          select book);
             return Ok(books);
         }
@@ -35,10 +36,10 @@
         [Route("api/books/add")]
         public IHttpActionResult PostBooks([FromBody] Book book)
         {
+            if (!ModelState.IsValid) return BadRequest("Verify info..!!");
             var list = db.Books.ToList();
             var id = list.Count;
             book.BookId = id;
-            if (!ModelState.IsValid) return BadRequest("Verify info..!!");
             db.Books.Add(book);
             db.SaveChangesAsync();
             return Ok("Successfuly added to database..!!");

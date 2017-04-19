@@ -1,0 +1,15 @@
+﻿@using Full_REST.BookDb
+@model System.Data.Entity.DbSet<Full_REST.BookDb.Book>
+
+@{
+	ViewBag.Title = "Books via MVC Action Result";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Books via MVC Action Result</h2>
+@{
+	foreach (Book book in Model)
+	{
+		<p>@book.Name     @book.Author    @book.PublishDate</p>
+	}
+}
