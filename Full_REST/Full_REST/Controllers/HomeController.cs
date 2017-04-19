@@ -38,7 +38,7 @@ namespace Full_REST.Controllers
             if (fbook == null) throw new ArgumentNullException(nameof(fbook));
             db.Entry(fbook).CurrentValues.SetValues(book);
             db.SaveChangesAsync();
-            Response.Write("OK");
+            Response.Write("Succesfully data updated....");
         }
     }
 }
