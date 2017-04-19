@@ -1,20 +1,19 @@
 ﻿@model Full_REST.BookDb.Book
 
 @{
-	ViewBag.Title = "Update";
+	ViewBag.Title = "Add new Book";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit book</h2>
-@using (Html.BeginForm("EditBookById", "Home", FormMethod.Post))
+<h2>Add New Book</h2>
+@using (Html.BeginForm("AddBook", "Home", FormMethod.Post))
 {
-	@Html.Label("input id");
-	@Html.TextBoxFor(m => m.BookId);<br/>
+	<p>Please verfy your data before sending it to server...</p>
 	@Html.Label("Name");
 	@Html.TextBoxFor(m => m.Name);<br />
 	@Html.Label("Author");
 	@Html.TextBoxFor(m => m.Author);<br />
 	@Html.Label("Publish Date");
 	@Html.TextBoxFor(m => m.PublishDate);<br />
-	<button type="submit">Update</button>
+	<button type="submit">Add</button>
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Full_REST.BookDb;
+    using BookDb;
 
     public class HomeController : Controller
     {
@@ -39,6 +39,20 @@
             db.Entry(fbook).CurrentValues.SetValues(book);
             db.SaveChangesAsync();
             Response.Write("Succesfully updated data....");
+        }
+
+        [HttpGet]
+        public ActionResult AddNewBook()
+        {
+            return View();
+        }
+        [HttpPost]
+        public void AddBook(Book book)
+        {
+            book.BookId = db.Books.Last().BookId + 1;
+            db.Books.Add(book);
+            db.SaveChangesAsync();
+            Response.Write("Succesfully added to database...");
         }
     }
 }
