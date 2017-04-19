@@ -38,7 +38,7 @@
             if (fbook == null) throw new ArgumentNullException(nameof(fbook));
             db.Entry(fbook).CurrentValues.SetValues(book);
             db.SaveChangesAsync();
-            Response.Write("Succesfully data updated....");
+            Response.Write("Succesfully updated data....");
         }
     }
 }
