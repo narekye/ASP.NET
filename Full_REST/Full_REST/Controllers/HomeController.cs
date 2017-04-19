@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using Full_REST.BookDb;
-
-namespace Full_REST.Controllers
+﻿namespace Full_REST.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Full_REST.BookDb;
+
     public class HomeController : Controller
     {
         private static BooksEntities db = new BooksEntities();
