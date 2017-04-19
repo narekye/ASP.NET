@@ -1,9 +1,11 @@
-﻿namespace Full_REST.Controllers
+﻿
+namespace Full_REST.Controllers
 {
     using System;
     using System.Linq;
     using System.Web.Mvc;
     using BookDb;
+    using System.Threading;
 
     public class HomeController : Controller
     {
@@ -54,6 +56,19 @@
             db.Books.Add(book);
             db.SaveChangesAsync();
             Response.Write("Succesfully added to database...");
+        }
+
+        [HttpGet]
+        public void DeleteById(int id)
+        {
+            Response.Write("You selected id " + id + "?");
+            var book = (from b in db.Books
+                where b.BookId == id
+                select b).FirstOrDefault();
+            if (ReferenceEquals(book, null)) return;
+            Thread.Sleep(1000);
+            db.Books.Remove(book);
+            db.SaveChangesAsync();
         }
     }
 }
