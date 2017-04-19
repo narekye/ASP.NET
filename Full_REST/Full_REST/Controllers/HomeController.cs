@@ -49,7 +49,8 @@
         [HttpPost]
         public void AddBook(Book book)
         {
-            book.BookId = db.Books.Last().BookId + 1;
+            var count = db.Books.Count();
+            book.BookId = count + 1;
             db.Books.Add(book);
             db.SaveChangesAsync();
             Response.Write("Succesfully added to database...");
