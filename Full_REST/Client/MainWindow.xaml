@@ -14,8 +14,8 @@
         <StackPanel Height="300" Width="100" HorizontalAlignment="Left" Margin="10,12,0,13" Background="Azure">
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="GET all books" Click="Get_All_Books"></Button>
             <Grid>
-                <Button Height="30" Width="60" HorizontalAlignment="Left" Margin="10 5 5 5" Content="GET by id"></Button>
-                <TextBox Width="17" Height="30" HorizontalAlignment="Right" Margin="0,5,10,5"></TextBox>
+                <Button Height="30" Width="60" HorizontalAlignment="Left" Margin="10 5 5 5" Content="GET by id" Click="Get_Book_By_Id"></Button>
+                <TextBox x:Name="idbox" Width="17" Height="30" HorizontalAlignment="Right" Margin="0,5,10,5"></TextBox>
             </Grid>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="POST book"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="PUT book"></Button>
