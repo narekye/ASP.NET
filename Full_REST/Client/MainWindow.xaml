@@ -19,7 +19,11 @@
             </Grid>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="POST book" Click="Show_Post"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="PUT book" Click="Show_Put"></Button>
-            <Button Height="30" Width="80" Margin="5 5 5 5" Content="DELETE book"></Button>
+            <Grid>
+                <Button Height="30" Width="60" HorizontalAlignment="Left" Margin="10 5 5 5" Content="DELETE" Click="Show_Delete"></Button>
+                <TextBox x:Name="idbox2" Width="17" Height="30" HorizontalAlignment="Right" Margin="0,5,10,5"></TextBox>
+            </Grid>
+            
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="DOWNLOAD"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="Chrome"></Button>
         </StackPanel>

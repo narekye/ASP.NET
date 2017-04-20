@@ -72,7 +72,7 @@ namespace Client
         private void Print(HttpResponseMessage message)
         {
             info.Text = "";
-            info.Text += "Method:\t" + message.RequestMessage.Method + "\n"
+            info.Text += "Method: \t" + message.RequestMessage.Method + "\n"
                          + "URI:\t" + message.RequestMessage.RequestUri + "\n" + "Build Version:\t" +
                          message.RequestMessage.Version.Build + "\n" + "Is Succes:\t" + message.IsSuccessStatusCode + "\n" +
                          "Server Response Code:\t" + message.StatusCode;
@@ -85,7 +85,22 @@ namespace Client
 
         private void Show_Put(object sender, RoutedEventArgs e)
         {
+            new Put_Book().Show();
+        }
+
+        private async void Show_Delete(object sender, RoutedEventArgs e)
+        {
+            res.Text = "";
+            response = await client.GetAsync("/api/books/" + idbox2.Text);
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("No such record, Server answer  " + response.StatusCode);
+                return;
+            }
             
+            Print(response);
+            response = await client.DeleteAsync("/api/books/" + idbox2.Text);
+            Print(response);
         }
     }
 }
