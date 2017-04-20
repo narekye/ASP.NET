@@ -6,9 +6,6 @@ using System.Windows;
 
 namespace Client
 {
-    /// <summary>
-    /// Interaction logic for Post_Book.xaml
-    /// </summary>
     public partial class Post_Book : Window
     {
         private readonly HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:20989") };
@@ -17,7 +14,6 @@ namespace Client
         {
             InitializeComponent();
         }
-
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             client.DefaultRequestHeaders.Accept.Clear();

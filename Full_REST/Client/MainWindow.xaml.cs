@@ -82,5 +82,10 @@ namespace Client
         {
             new Post_Book().Show();
         }
+
+        private void Show_Put(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
