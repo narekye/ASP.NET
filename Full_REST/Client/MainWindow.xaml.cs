@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Client
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private readonly HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:20989") };
         private HttpResponseMessage response = null;
@@ -31,7 +31,6 @@ namespace Client
                 throw new NullReferenceException();
             }
         }
-
         private async void Get_Book_By_Id(object sender, RoutedEventArgs e)
         {
             res.Text = "";
@@ -101,6 +100,19 @@ namespace Client
             Print(response);
             response = await client.DeleteAsync("/api/books/" + idbox2.Text);
             Print(response);
+        }
+
+        private async void Download(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(box.Text);
+            try
+            {
+                res.Text = await client.GetStringAsync(uri);
+            }
+            catch
+            {
+                MessageBox.Show("Oops! Please write correct address");
+            }
         }
     }
 }

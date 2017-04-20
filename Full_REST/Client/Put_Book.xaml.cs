@@ -37,7 +37,7 @@ namespace Client
                         + "URI:\t" + response.RequestMessage.RequestUri + "\n" + "Build Version:\t" +
                         response.RequestMessage.Version.Build + "\n" + "Is Succes:\t" + response.IsSuccessStatusCode + "\n" +
                         "Server Response Code:\t" + response.StatusCode);
-                
+
             }
             catch { throw new InvalidOperationException(); }
         }
