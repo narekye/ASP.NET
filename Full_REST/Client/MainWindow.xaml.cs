@@ -1,25 +1,14 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Web.Script.Serialization;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Threading;
 using Full_REST.BookDb;
 using Newtonsoft.Json;
 
 namespace Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:20989") };
@@ -30,9 +19,6 @@ namespace Client
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
         }
-
-
-
         private async void Get_All_Books(object sender, RoutedEventArgs e)
         {
             try
@@ -49,7 +35,11 @@ namespace Client
         private async void Get_Book_By_Id(object sender, RoutedEventArgs e)
         {
             res.Text = " ";
-            if (idbox.Text == "") MessageBox.Show("Please set id", "About id...");
+            if (idbox.Text == "")
+            {
+                MessageBox.Show("Please set id", "About id..."); 
+                return;
+            }
             try
             {
                 var list = await Get_Deserialize("/api/books/", false);
@@ -65,9 +55,7 @@ namespace Client
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             if (flag)
-            {
                 return JsonConvert.DeserializeObject<List<Book>>(result);
-            }
             Book book = JsonConvert.DeserializeObject<Book>(result);
             return new List<Book> { book };
         }
