@@ -38,8 +38,7 @@
         {
             if (!ModelState.IsValid) return BadRequest("Verify info..!!");
             var list = db.Books.ToList();
-            var id = list.Count;
-            book.BookId = id;
+            book.BookId = list.Count;
             db.Books.Add(book);
             db.SaveChangesAsync();
             return Ok("Successfuly added to database..!!");

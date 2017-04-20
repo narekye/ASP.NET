@@ -1,0 +1,15 @@
+﻿<Window x:Class="Client.Post_Book"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Post_Book" Height="153.399" Width="266.006">
+    <StackPanel  >
+        <TextBox x:Name="bname" HorizontalAlignment="Right" Width="150" Height="20" Margin="5 5 5 5" Text="Book name" TextAlignment="Center"></TextBox>
+        <TextBox x:Name="bauthor" HorizontalAlignment="Right" Width="150" Height="20" Margin="5 5 5 5" Text="Book author" TextAlignment="Center"></TextBox>
+        <TextBox x:Name="bpublish" HorizontalAlignment="Right"  Width="150" Height="20" Margin="5 5 5 5" Text="Publish date" TextAlignment="Center"></TextBox>
+        <Button Content="POST" Width="50" HorizontalAlignment="Center" Click="ButtonBase_OnClick" Margin="104,0"/>
+    </StackPanel>
+</Window>

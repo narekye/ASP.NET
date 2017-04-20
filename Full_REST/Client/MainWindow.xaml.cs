@@ -23,7 +23,7 @@ namespace Client
         {
             try
             {
-                var list = await Get_Deserialize("/api/books", true);
+                var list = await Get_Deserialize_Async("/api/books", true);
                 Print(list);
             }
             catch
@@ -34,25 +34,26 @@ namespace Client
 
         private async void Get_Book_By_Id(object sender, RoutedEventArgs e)
         {
-            res.Text = " ";
+            res.Text = "";
             if (idbox.Text == "")
             {
-                MessageBox.Show("Please set id", "About id..."); 
+                MessageBox.Show("Please set id", "About id...");
                 return;
             }
             try
             {
-                var list = await Get_Deserialize("/api/books/", false);
+                var list = await Get_Deserialize_Async("/api/books/", false);
                 Print(list);
                 idbox.Clear();
             }
             catch { throw new InvalidOperationException(); }
         }
 
-        private async Task<List<Book>> Get_Deserialize(string uri, bool flag)
+        private async Task<List<Book>> Get_Deserialize_Async(string uri, bool flag)
         {
             response = await client.GetAsync(uri + idbox.Text);
-            response.EnsureSuccessStatusCode();
+            //  response.EnsureSuccessStatusCode(); this can be used to validate your action....
+            Print(response);
             var result = await response.Content.ReadAsStringAsync();
             if (flag)
                 return JsonConvert.DeserializeObject<List<Book>>(result);
@@ -62,9 +63,24 @@ namespace Client
 
         private void Print(List<Book> list)
         {
+            if (ReferenceEquals(list, null)) return;
             res.Text = "";
             foreach (Book book in list)
                 res.Text += book.Author + "\t" + book.Name + "\t" + book.PublishDate + "\n";
+        }
+
+        private void Print(HttpResponseMessage message)
+        {
+            info.Text = "";
+            info.Text += "Method:\t" + message.RequestMessage.Method + "\n"
+                         + "URI:\t" + message.RequestMessage.RequestUri + "\n" + "Build Version:\t" +
+                         message.RequestMessage.Version.Build + "\n" + "Is Succes:\t" + message.IsSuccessStatusCode + "\n" +
+                         "Server Response Code:\t" + message.StatusCode;
+        }
+
+        private void Show_Post(object sender, RoutedEventArgs e)
+        {
+            new Post_Book().Show();
         }
     }
 }

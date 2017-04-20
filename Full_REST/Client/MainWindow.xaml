@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="RESTful with WPF" Height="375.086" Width="651.912" ResizeMode="NoResize">
+        Title="RESTful with WPF to Web_Api" Height="375.086" Width="651.912" ResizeMode="NoResize">
     <Grid Margin="10,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="310*"/>
@@ -17,15 +17,15 @@
                 <Button Height="30" Width="60" HorizontalAlignment="Left" Margin="10 5 5 5" Content="GET by id" Click="Get_Book_By_Id"></Button>
                 <TextBox x:Name="idbox" Width="17" Height="30" HorizontalAlignment="Right" Margin="0,5,10,5"></TextBox>
             </Grid>
-            <Button Height="30" Width="80" Margin="5 5 5 5" Content="POST book"></Button>
+            <Button Height="30" Width="80" Margin="5 5 5 5" Content="POST book" Click="Show_Post"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="PUT book"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="DELETE book"></Button>
-            <Button Height="30" Width="80" Margin="5 5 5 5"></Button>
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="DOWNLOAD"></Button>
+            <Button Height="30" Width="80" Margin="5 5 5 5" Content="Chrome"></Button>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Width="379" Margin="125,0,0,-4" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <TextBlock x:Name="res" Background="Aqua" Height="160" Margin="0,0,-131,0"></TextBlock>
-            <TextBlock Background="Brown" Height="145" Margin="0,0,-131,0"></TextBlock>
+            <TextBlock x:Name="info" Background="Brown" Foreground="White" Height="145" Margin="0,0,-131,0"></TextBlock>
             <TextBox x:Name="box" Text="Enter own URL and click download content" Margin="0,5,-131,5"></TextBox>
         </StackPanel>
     </Grid>
