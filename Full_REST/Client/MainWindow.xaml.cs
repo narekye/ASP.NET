@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -113,6 +114,11 @@ namespace Client
             {
                 MessageBox.Show("Oops! Please write correct address");
             }
+        }
+
+        private async void GitHub(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(() => Process.Start("https://github.com/narekye"));
         }
     }
 }

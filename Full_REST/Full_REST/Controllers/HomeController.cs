@@ -1,4 +1,6 @@
-﻿
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
+
 namespace Full_REST.Controllers
 {
     using System;
@@ -15,7 +17,6 @@ namespace Full_REST.Controllers
             ViewBag.Title = "Home Page";
             return View();
         }
-
         public ActionResult Books()
         {
             return View();

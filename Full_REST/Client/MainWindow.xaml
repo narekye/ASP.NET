@@ -25,7 +25,7 @@
             </Grid>
             
             <Button Height="30" Width="80" Margin="5 5 5 5" Content="DOWNLOAD" Click="Download"></Button>
-            <Button Height="30" Width="80" Margin="5 5 5 5" Content="Chrome"></Button>
+            <Button Height="30" Width="80" Margin="5 5 5 5" Content="GitHub" Click="GitHub"></Button>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Width="379" Margin="125,0,0,-4" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <TextBox x:Name="res" Background="Aqua" Height="160" Margin="0,0,-131,0" VerticalScrollBarVisibility="Auto"></TextBox>
