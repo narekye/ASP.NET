@@ -54,7 +54,7 @@ namespace Full_REST.Controllers
             var count = db.Books.Count();
             book.BookId = count + 1;
             db.Books.Add(book);
-            db.SaveChangesAsync();
+            db.SaveChangesAsync();  
             Response.Write("Succesfully added to database...");
         }
 
