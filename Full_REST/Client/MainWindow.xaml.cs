@@ -37,7 +37,7 @@ namespace Client
             if (idbox.Text == "")
             {
                 MessageBox.Show("Please set id", "About id...");
-                return;
+                return; 
             }
             try
             {
@@ -104,7 +104,7 @@ namespace Client
 
         private async void Download(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(box.Text);
+            Uri uri = new Uri(box.T
             try
             {
                 res.Text = await _client.GetStringAsync(uri);
