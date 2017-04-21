@@ -104,7 +104,7 @@ namespace Client
 
         private async void Download(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(box.T
+            Uri uri = new Uri(box.Text);
             try
             {
                 res.Text = await _client.GetStringAsync(uri);
