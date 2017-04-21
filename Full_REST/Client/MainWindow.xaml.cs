@@ -26,7 +26,7 @@ namespace Client
                 var list = await Get_Deserialize_Async("/api/books", true);
                 Print(list);
             }
-            catch
+            catch    
             {
                 throw new NullReferenceException();
             }
