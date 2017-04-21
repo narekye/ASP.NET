@@ -11,12 +11,12 @@ namespace Client
 {
     public partial class MainWindow
     {
-        private readonly HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:20989") };
-        private HttpResponseMessage response = null;
+        private readonly HttpClient _client = new HttpClient() { BaseAddress = new Uri("http://localhost:20989") };
+        private HttpResponseMessage _response;
 
         public MainWindow()
         {
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
         }
         private async void Get_All_Books(object sender, RoutedEventArgs e)
@@ -50,10 +50,10 @@ namespace Client
 
         private async Task<List<Book>> Get_Deserialize_Async(string uri, bool flag)
         {
-            response = await client.GetAsync(uri + idbox.Text);
-            //  response.EnsureSuccessStatusCode(); this can be used to validate your action....
-            Print(response);
-            var result = await response.Content.ReadAsStringAsync();
+            _response = await _client.GetAsync(uri + idbox.Text);
+            //  _response.EnsureSuccessStatusCode(); this can be used to validate your action....
+            Print(_response);
+            var result = await _response.Content.ReadAsStringAsync();
             if (flag)
                 return JsonConvert.DeserializeObject<List<Book>>(result);
             Book book = JsonConvert.DeserializeObject<Book>(result);
@@ -90,24 +90,24 @@ namespace Client
         private async void Show_Delete(object sender, RoutedEventArgs e)
         {
             res.Text = "";
-            response = await client.GetAsync("/api/books/" + idbox2.Text);
-            if (!response.IsSuccessStatusCode)
+            _response = await _client.GetAsync("/api/books/" + idbox2.Text);
+            if (!_response.IsSuccessStatusCode)
             {
-                MessageBox.Show("No such record, Server answer  " + response.StatusCode);
+                MessageBox.Show("No such record, Server answer  " + _response.StatusCode);
                 return;
             }
             
-            Print(response);
-            response = await client.DeleteAsync("/api/books/" + idbox2.Text);
-            Print(response);
+            Print(_response);
+            _response = await _client.DeleteAsync("/api/books/" + idbox2.Text);
+            Print(_response);
         }
 
         private async void Download(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri(box.Text);
+            Uri uri = new Uri(box.Text);
             try
             {
-                res.Text = await client.GetStringAsync(uri);
+                res.Text = await _client.GetStringAsync(uri);
             }
             catch
             {
