@@ -1,8 +1,8 @@
-﻿using System.Web.Http;
-using ASP.NET_Web_Api_JSON_Sending_Receiving.Models;
-
-namespace ASP.NET_Web_Api_JSON_Sending_Receiving.Controllers
+﻿namespace ASP.NET_Web_Api_JSON_Sending_Receiving.Controllers
 {
+    using System.Web.Http;
+    using ASP.NET_Web_Api_JSON_Sending_Receiving.Models;
+
     public class ValuesController : ApiController
     {
         #region Comment
