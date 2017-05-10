@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Newtonsoft.Json;
-using WebApi_Entity_App.Database;
-namespace WebApi_Entity_App.Controllers
+﻿namespace WebApi_Entity_App.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Database;
 
     public class ValuesController : ApiController, IController
     {
@@ -22,7 +19,5 @@ namespace WebApi_Entity_App.Controllers
         {
             return new[] { "value1", "value2" };
         }
-        
-        
     }
 }
