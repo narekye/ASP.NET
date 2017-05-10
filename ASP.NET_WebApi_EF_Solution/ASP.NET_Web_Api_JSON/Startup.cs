@@ -21,7 +21,7 @@ namespace ASP.NET_Web_Api_JSON
         public void ConfigureWebApi(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
-            var json = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            JsonMediaTypeFormatter json = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }

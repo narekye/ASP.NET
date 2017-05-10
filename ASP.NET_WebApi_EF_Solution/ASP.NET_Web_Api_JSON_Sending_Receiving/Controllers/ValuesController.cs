@@ -1,7 +1,7 @@
 ﻿namespace ASP.NET_Web_Api_JSON_Sending_Receiving.Controllers
 {
     using System.Web.Http;
-    using ASP.NET_Web_Api_JSON_Sending_Receiving.Models;
+    using Models;
 
     public class ValuesController : ApiController
     {
