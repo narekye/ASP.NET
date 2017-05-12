@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
-
-namespace Full_REST.Controllers
+﻿namespace Full_REST.Controllers
 {
     using System;
     using System.Linq;
