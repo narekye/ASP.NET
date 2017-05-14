@@ -9,6 +9,7 @@
         public static void Main()
         {
             var path = ConfigurationManager.ConnectionStrings["entity"].ToString();
+
             using (SqlConnection conn = new SqlConnection(path))
             {
                 try
