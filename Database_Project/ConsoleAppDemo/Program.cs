@@ -23,8 +23,6 @@ namespace ConsoleAppDemo
                 {
                     while (reader.Read())
                         Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
-
-                    
                     reader.Close();
                 }
                 Console.WriteLine("Select close.. press enter..");
