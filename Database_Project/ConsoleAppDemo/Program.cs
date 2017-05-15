@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace ConsoleAppDemo
 {
@@ -21,17 +16,27 @@ namespace ConsoleAppDemo
                 SqlCommand command = conn.CreateCommand();
 
                 command.Transaction = transaction;
-                command.CommandText = "Select * from Users";
+                var select = "select * from Users";
+                command.CommandText = select;
 
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                    Console.WriteLine(reader.GetInt32(0) + "  " + reader.GetString(1) + "  " + reader.GetString(2));
-                
-                // command.CommandText = $"INSERT INTO Users(FirstName,LastName) VALUES ({Console.ReadLine()},{Console.ReadLine()})";
-                // command.ExecuteNonQuery();
-                // Console.WriteLine(count);
-                Console.WriteLine("Close");
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                        Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
+
+                    
+                    reader.Close();
+                }
+                Console.WriteLine("Select close.. press enter..");
+                Console.Read();
+                command.CommandText = "Insert into Users(FirstName, LastName) Values ('Poghos','Atoyan')";
+
+                int affected = command.ExecuteNonQuery();
+                Console.WriteLine(affected);
+                transaction.Commit();
+                command.Dispose();
             }
+            Console.WriteLine("Close");
         }
     }
 }
