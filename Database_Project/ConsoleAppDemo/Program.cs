@@ -8,7 +8,6 @@ namespace ConsoleAppDemo
         static void Main()
         {
             var path = "Data Source=.;initial catalog=newusers;integrated security=True";
-
             using (SqlConnection conn = new SqlConnection(path))
             {
                 conn.Open();
@@ -19,7 +18,7 @@ namespace ConsoleAppDemo
                 var select = "select * from Users";
                 command.CommandText = select;
 
-                using (var reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                         Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
