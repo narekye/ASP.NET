@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data.SqlClient;
-
-namespace ConsoleAppDemo
+﻿namespace ConsoleAppDemo
 {
+    using System;
+    using System.Data.SqlClient;
+
     class Program
     {
         static void Main()
@@ -22,6 +22,7 @@ namespace ConsoleAppDemo
                         while (reader.Read())
                             Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
                     }
+
                     Console.WriteLine("Select close.. press enter..");
                     Console.Read();
 
