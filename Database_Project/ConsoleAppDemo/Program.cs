@@ -12,26 +12,36 @@ namespace ConsoleAppDemo
             {
                 conn.Open();
                 SqlTransaction transaction = conn.BeginTransaction();
-                SqlCommand command = conn.CreateCommand();
-
-                command.Transaction = transaction;
-                var select = "select * from Users";
-                command.CommandText = select;
-
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlCommand command = conn.CreateCommand())
                 {
-                    while (reader.Read())
-                        Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
-                    reader.Close();
-                }
-                Console.WriteLine("Select close.. press enter..");
-                Console.Read();
-                command.CommandText = "Insert into Users(FirstName, LastName) Values ('Poghos','Atoyan')";
+                    command.Transaction = transaction;
+                    command.CommandText = "select * from Users";
 
-                int affected = command.ExecuteNonQuery();
-                Console.WriteLine(affected);
-                transaction.Commit();
-                command.Dispose();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
+                    }
+                    Console.WriteLine("Select close.. press enter..");
+                    Console.Read();
+
+                    command.CommandText = "Insert into Users(FirstName, LastName) Values" +
+                                          $"('{Console.ReadLine()}'" +
+                                          $",'{Console.ReadLine()}')";
+
+                    try
+                    {
+                        int affected = command.ExecuteNonQuery();
+                        Console.WriteLine(affected);
+                        transaction.Commit();
+                        Console.WriteLine($"Commited at: {DateTime.Now.ToShortTimeString()} successful..");
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Rolled back..!");
+                    }
+                }
             }
             Console.WriteLine("Close");
         }
