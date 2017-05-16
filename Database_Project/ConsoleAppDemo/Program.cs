@@ -19,8 +19,9 @@
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
-                            Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
+                        if (reader.HasRows)
+                            while (reader.Read())
+                                Console.WriteLine(reader.GetString(1) + "  " + reader.GetString(2));
                     }
 
                     Console.WriteLine("Select close.. press enter..");
