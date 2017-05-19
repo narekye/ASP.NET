@@ -16,7 +16,7 @@ namespace Entity_Framework
             Console.WriteLine("All Data.. ");
             foreach (Book book in result)
                 Console.WriteLine($"{book.Author}\t{book.Name}\t{book.PublishDate}");
-            Console.WriteLine("By Id -> 1");
+            Console.WriteLine("By Id -> 21");
             Book idbook = GetById(1).Result;
             Console.WriteLine($"{idbook.Author}\t{idbook.Name}\t{idbook.PublishDate}");
             DeleteById(21).Wait();
