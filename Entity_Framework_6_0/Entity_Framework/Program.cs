@@ -27,7 +27,8 @@ namespace Entity_Framework
                 Name = "Arkacner",
                 PublishDate = "1998"
             };
-            UpdateData(data, 2).Wait();
+            int rows = UpdateData(data, 2).Result;
+            Console.WriteLine($"Affected: {rows}\trows..");
         }
 
         public static async Task<List<Book>> GetAllData()
