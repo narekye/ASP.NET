@@ -68,7 +68,7 @@ namespace Entity_Framework
                     bool flag = false;
                     try
                     {
-                        var book = db.Books.FirstOrDefault(p => p.BookId == id);
+                        Book book = db.Books.FirstOrDefault(p => p.BookId == id);
                         if (book != null)
                         {
                             db.Books.Remove(book);
