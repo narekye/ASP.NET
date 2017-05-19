@@ -20,6 +20,14 @@ namespace Entity_Framework
             Book idbook = GetById(1).Result;
             Console.WriteLine($"{idbook.Author}\t{idbook.Name}\t{idbook.PublishDate}");
             DeleteById(21).Wait();
+            Console.WriteLine(new string('-', 30));
+            Book data = new Book()
+            {
+                Author = "Arman",
+                Name = "Arkacner",
+                PublishDate = "1998"
+            };
+            UpdateData(data, 2).Wait();
         }
 
         public static async Task<List<Book>> GetAllData()
@@ -89,6 +97,33 @@ namespace Entity_Framework
                     }
                 }
             });
+        }
+
+        public static async Task<int> UpdateData(Book data, int? id = null)
+        {
+            int affected = 0;
+            using (BooksEntities db = new BooksEntities())
+            {
+                if (id.HasValue)
+                {
+                    try
+                    {
+                        Book book = db.Books.FirstOrDefault(p => p.BookId == id);
+                        if (book != null)
+                        {
+                            data.BookId = book.BookId;
+                            db.Entry(book).CurrentValues.SetValues(data);
+                            affected = await db.SaveChangesAsync();
+                        }
+                        return affected;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return 0;
         }
     }
 }
