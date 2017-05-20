@@ -124,7 +124,7 @@ namespace Entity_Framework
                     }
                 }
             }
-            return 0;
+            return affected;
         }
     }
 }
