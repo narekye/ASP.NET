@@ -1,4 +1,6 @@
-﻿namespace Full_REST.Controllers
+﻿using System.Data.Entity;
+
+namespace Full_REST.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Http;
@@ -12,8 +14,8 @@
         // This method used in MVC view with AJAX
         public IEnumerable<Book> GetAllBooks()
         {
-            var result = db.Books;
-            return result;
+            var result = db.Books.ToListAsync();
+            return result as IEnumerable<Book>;
         }
         // GET api/book/{id}
         public IHttpActionResult GetBookById(int id)
@@ -31,7 +33,7 @@
                          where book.Author == author
                          select book);
             return Ok(books);
-        }     
+        }
         // POST api/books/add
         [Route("api/books/add")]
         public IHttpActionResult PostBooks([FromBody] Book book)
@@ -42,7 +44,7 @@
             db.Books.Add(book);
             db.SaveChangesAsync();
             return Ok("Successfuly added to database..!!");
-        }   
+        }
         // PUT api/books/{id}
         public IHttpActionResult PutBookById(int id, [FromBody]Book book)
         {
